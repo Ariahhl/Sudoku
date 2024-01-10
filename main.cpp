@@ -2,6 +2,18 @@
 #include <vector>
 using namespace std;
 
+int dupcheck(int x [9][9], int y [9][9])
+{
+    for (int i = 0; i < 9; i++)
+        for (int j = 0; j < 9; j++)
+            {
+                if (!(x[i][j] == y[i][j]))
+                    return 0 ;
+            }
+    return 1 ;
+}
+
+
 int endchecker(int x[9][9])
 {
 
@@ -162,12 +174,11 @@ void secondzeroimp(int sudo[9][9],int a1[9][9],int a2[9][9],int a3[9][9],int a4[
 }
 int main()
 {
-    int i = 0 ;
+    int it = 0 ;
     int sudo[9][9],a1[9][9],a2[9][9],a3[9][9],a4[9][9],a5[9][9],a6[9][9],a7[9][9],a8[9][9],a9[9][9],tester[9][9];
     for (int i = 0 ; i < 9 ; i++)
         for (int j = 0 ; j < 9 ; j++)
         {
-            tester[i][j] = 0 ;
             a1[i][j] = 1 ;
             a2[i][j] = 2 ;
             a3[i][j] = 3 ;
@@ -393,20 +404,14 @@ int main()
                     if (GN == 8)
                         {sudo[i][j] = a1[i][j] +a2[i][j] +a3[i][j] +a4[i][j] +a5[i][j] +a6[i][j] +a7[i][j] +a8[i][j] +a9[i][j] ;}
                }
-         if (i % 2 == 0)
+         if (it % 2 == 0)
             for (int i = 0; i < 9; i++)
                 for (int j = 0; j < 9; j++)
                     tester[i][j] = sudo[i][j];
-        while(true){
-            for (int i = 0; i < 9; i++)
-                for (int j = 0; j < 9; j++)
-                    {
-                        if (!(tester[i][j] == sudo[i][j]))
-                            break;
-                    }
+       if (dupcheck(tester,sudo) == 1 && it % 2 != 0)
+       {
 
-
-            }
+       }
          cout << "yaftane javab \n";
          if (endchecker(sudo) == 1)
             break;
@@ -418,7 +423,6 @@ int main()
          for (int i = 0 ; i < 9 ; i++)
             for (int j = 0 ; j < 9 ; j++)
                 {
-                    tester[i][j] = 0 ;
                     a1[i][j] = 1 ;
                     a2[i][j] = 2 ;
                     a3[i][j] = 3 ;
@@ -430,7 +434,7 @@ int main()
                     a9[i][j] = 9 ;
                 }
 
-    i++;
+    it++;
     }
     cout <<"--------------------"<< endl;
     for (int i = 0 ; i < 9 ; i++){
