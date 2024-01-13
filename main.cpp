@@ -12,8 +12,43 @@ int dupcheck(int x [9][9], int y [9][9])
             }
     return 1 ;
 }
+int sudochecker(int x[9][9])
+{
+    for (int i = 0 ; i < 9 ; i ++)
+        for (int j = 0 ; j < 9 ; j++)
+        {
+            int y = x[i][j];
+            int j = 0 ;
+            for (int k = 0 ; k < 9 ; k ++)
+                if (y == x[k][i])
+                    j++;
+            if (j > 1)
+                return 1 ;
+        }
+
+    for (int i = 0 ; i < 9 ; i ++)
+        for (int j = 0 ; j < 9 ; j++)
+        {
+            int y = x[i][j];
+            int j = 0 ;
+            for (int k = 0 ; k < 9 ; k ++)
+                if (y == x[k][i])
+                    j++;
+            if (j > 1)
+                return 1 ;
+        }
+    for (int l = 0 ; l < 3 ; l++)
+        for (int k = 0 ; k < 3 ; k++)
+        {
+            int y = x[i][j];
+            int j = 0 ;
+            for (int i = x*3 ; i < (x+1)*3 ; i++)
+                for (int j = y*3 ;j < (y+1)*3 ; j++)
 
 
+        }
+
+}
 int endchecker(int x[9][9])
 {
 
