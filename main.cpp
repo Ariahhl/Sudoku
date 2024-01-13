@@ -17,37 +17,52 @@ int sudochecker(int x[9][9])
     for (int i = 0 ; i < 9 ; i ++)
         for (int j = 0 ; j < 9 ; j++)
         {
-            int y = x[i][j];
-            int j = 0 ;
-            for (int k = 0 ; k < 9 ; k ++)
-                if (y == x[k][i])
-                    j++;
-            if (j > 1)
-                return 1 ;
+            int y = -1;
+            if (x[i][j] != 0)
+                 y = x[i][j];
+            int t = 0 ;
+            for (int k = 0 ; k < 9 ; k ++){
+                if (y == x[i][k] &&  x[i][k] != 0 )
+                    t++;
+                if (t >= 2)
+                    return 1;
+                }
         }
 
     for (int i = 0 ; i < 9 ; i ++)
         for (int j = 0 ; j < 9 ; j++)
         {
-            int y = x[i][j];
-            int j = 0 ;
+            int y = -1;
+            if (x[i][j] != 0)
+                 y = x[i][j];
+            int t = 0 ;
             for (int k = 0 ; k < 9 ; k ++)
-                if (y == x[k][i])
-                    j++;
-            if (j > 1)
+                if (y == x[k][j] &&  x[k][j] != 0)
+                    t++;
+            if (t >= 2)
                 return 1 ;
         }
     for (int l = 0 ; l < 3 ; l++)
         for (int k = 0 ; k < 3 ; k++)
         {
-            int y = x[i][j];
-            int j = 0 ;
-            for (int i = x*3 ; i < (x+1)*3 ; i++)
-                for (int j = y*3 ;j < (y+1)*3 ; j++)
-
-
+            int y ;
+            int t = 0 ;
+            for (int i = l*3 ; i < (l+1)*3 ; i++)
+                for (int j = k*3 ;j < (k+1)*3 ; j++)
+                {
+                    y = x[i][j];
+                    for (int m = l*3 ; m < (l+1)*3 ; m++){
+                        for (int h = k*3 ;h < (k+1)*3 ; h++)
+                        {
+                            if (y == x[m][h])
+                                t++;
+                        }
+                        if (t > 1 )
+                            return 1;
+                    }
+                }
         }
-
+        return 0;
 }
 int endchecker(int x[9][9])
 {
@@ -227,6 +242,8 @@ int main()
     for (int i = 0 ; i < 9 ; i++)
         for (int j = 0 ; j < 9 ; j++)
             cin >> sudo[i][j];
+    if (sudochecker(sudo) == 1 )
+        return 8;
    while(true){
     cout << "start\n";
         firstzeroimp(sudo, a1, a2, a3, a4, a5, a6, a7, a8, a9);
